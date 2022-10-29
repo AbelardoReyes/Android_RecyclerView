@@ -24,27 +24,20 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Persona> PersonList;
     private RecyclerView recyclerview;
-    int requescode = 200;
+    int requescode = 255;
     boolean b = false;
     TextView text;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         text = findViewById(R.id.telefono);
-        Button llamada = findViewById(R.id.button);
         recyclerview = findViewById(R.id.recycler);
         PersonList = new ArrayList<>();
         setGetPerson();
         setAdapter();
-
-        llamada.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
     private void setAdapter() {
@@ -62,11 +55,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setGetPerson() {
-        PersonList.add(new Persona("Abelardo", "8713733996"));
-        PersonList.add(new Persona("Carlos Duron", "8713735647"));
-        PersonList.add(new Persona("Cristian Avitia", "8713736754"));
-
-
+        PersonList.add(new Persona("Abelardo", "8714733996"));
+        PersonList.add(new Persona("Brandon", "6561637971"));
+        PersonList.add(new Persona("Ivan Villareal", "8713948820"));
+        PersonList.add(new Persona("Itzel Alejandra", "8721666910"));
+        PersonList.add(new Persona("Jose", "8712439520"));
+        PersonList.add(new Persona("Lily", "8711191270"));
+        PersonList.add(new Persona("Mama", "8711003892"));
+        PersonList.add(new Persona("Juan Carlos", "8715495040"));
     }
 
 
@@ -80,13 +76,13 @@ public class MainActivity extends AppCompatActivity {
         {
             ejecutarLlamada();
         }else{
-            ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.CALL_PHONE},255);
+            ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.CALL_PHONE},requescode);
         }
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==255){
+        if(requestCode==requescode){
             if(permissions.length>=0 &&grantResults[0]==PackageManager.PERMISSION_GRANTED){
                 Toast.makeText(this,"Permisos Aceptados",Toast.LENGTH_SHORT).show();
                 ejecutarLlamada();
